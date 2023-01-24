@@ -20,13 +20,11 @@ class ComicsListAdapter(private val context: Context, var comicList:List<Comic>)
    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ComicItemViewHolder {
         val layoutInflater: LayoutInflater = LayoutInflater.from(parent.context)
         val view: View = layoutInflater.inflate(R.layout.comics_list_item,parent,false)
-
         return ComicItemViewHolder(view )
 
     }
 
     override fun onBindViewHolder(holder: ComicItemViewHolder, position: Int) {
-
         (holder as ComicItemViewHolder).bind(comicList[position],context)
 
     }
@@ -37,9 +35,8 @@ class ComicsListAdapter(private val context: Context, var comicList:List<Comic>)
     class ComicItemViewHolder (view: View):RecyclerView.ViewHolder(view){
 
         fun bind(comic: Comic?, context:Context){
-
             itemView.detail_comic_name.text = comic?.title
-            var dsc =  if (comic?.description==null) "No Description Available" else  comic?.description
+            var dsc = comic?.description ?: "No Description Available"
             itemView.detail_comic_dsc.text= dsc
             var date = comic?.dates?.first()?.date
 

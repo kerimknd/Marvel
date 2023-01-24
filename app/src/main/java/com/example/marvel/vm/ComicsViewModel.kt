@@ -21,6 +21,7 @@ class ComicsViewModel (private val comicsRepository: ComicsListRepository, val c
         return  comicPagedList.value?.isEmpty() ?:true
     }
 
+
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()

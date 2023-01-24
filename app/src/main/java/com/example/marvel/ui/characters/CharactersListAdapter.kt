@@ -34,9 +34,6 @@ class CharactersListAdapter (private val context: Context, private val listener:
            (holder as CharacterItemViewHolder).bind(getItem(position),context)
 
     }
-
-
-
     class CharacterDiffCallback : DiffUtil.ItemCallback<Character>(){
         override fun areItemsTheSame(oldItem: Character, newItem: Character): Boolean {
           return oldItem.id==newItem.id

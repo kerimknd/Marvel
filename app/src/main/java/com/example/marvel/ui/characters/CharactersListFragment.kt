@@ -52,10 +52,10 @@ class CharactersListFragment : Fragment(),ClickListener {
                 }
             }
         })
-        viewModel.characterPagedList.observe(getViewLifecycleOwner(),Observer{
+        viewModel.characterPagedList.observe(viewLifecycleOwner,Observer{
             characterListAdapter.submitList(it)
         })
-        viewModel.networkState.observe(getViewLifecycleOwner(), Observer {
+        viewModel.networkState.observe(viewLifecycleOwner, Observer {
             ch_progress_bar.visibility = if(viewModel.listIsEmty() && it == NetworkState.LOADING) View.VISIBLE else View.GONE
             ch_txt_error.visibility = if(viewModel.listIsEmty() && it == NetworkState.ERROR) View.VISIBLE else View.GONE
             if(viewModel.networkState.value== NetworkState.LOADED)  ch_progress_bar_list.visibility= View.GONE
@@ -65,7 +65,6 @@ class CharactersListFragment : Fragment(),ClickListener {
 
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // handle arrow click here
         if (item.itemId == android.R.id.home) {
             backPressedCallback.handleOnBackPressed()
         }

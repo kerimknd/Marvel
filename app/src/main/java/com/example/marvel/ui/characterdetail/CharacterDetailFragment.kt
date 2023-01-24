@@ -69,17 +69,17 @@ class CharacterDetailFragment : Fragment() {
         comic_list.setHasFixedSize(true)
         comic_list.adapter = comicListAdapter
 
-        comicsViewModel.comicPagedList.observe(getViewLifecycleOwner(), Observer { data ->
+        comicsViewModel.comicPagedList.observe(viewLifecycleOwner, Observer { data ->
           updateList(data)
 
         })
-        comicsViewModel.networkState.observe(getViewLifecycleOwner(), Observer {
+        comicsViewModel.networkState.observe(viewLifecycleOwner, Observer {
             detail_progress_bar.visibility = if(comicsViewModel.listIsEmty() && it == NetworkState.LOADING) View.VISIBLE else View.GONE
             txt_error_detail.visibility = if(comicsViewModel.listIsEmty() && it == NetworkState.ERROR) View.VISIBLE else View.GONE
 
         })
 
-        characterViewModel.characterDetail.observe(getViewLifecycleOwner(), Observer {
+        characterViewModel.characterDetail.observe(viewLifecycleOwner, Observer {
             bindUI(it)
         })
 
